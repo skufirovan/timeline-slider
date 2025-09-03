@@ -17,7 +17,7 @@ export const ArrowIcon = memo(
 
     useEffect(() => {
       const checkMobile = () =>
-        setSize(window.innerWidth <= 768 ? "large" : "small");
+        setSize(window.innerWidth <= 768 ? "small" : "large");
 
       checkMobile();
       window.addEventListener("resize", checkMobile);
