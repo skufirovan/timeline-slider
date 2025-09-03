@@ -15,22 +15,22 @@ export const Slider = ({ className }: { className?: string }) => {
   const [currentEvents, setCurrentEvents] = useState(config[0].events);
 
   const refs = {
-    fuchsia: useRef<HTMLSpanElement>(null),
-    iris: useRef<HTMLSpanElement>(null),
-    buttonsWrapper: useRef<HTMLDivElement>(null),
-    sliderWrapper: useRef<HTMLDivElement>(null),
-    activeText: useRef<HTMLParagraphElement>(null),
+    rightDate: useRef<HTMLSpanElement>(null),
+    leftDate: useRef<HTMLSpanElement>(null),
+    circleButtons: useRef<HTMLDivElement>(null),
+    slider: useRef<HTMLDivElement>(null),
+    themeText: useRef<HTMLParagraphElement>(null),
   };
 
   useLayoutEffect(() => {
-    if (refs.activeText.current) {
-      refs.activeText.current.innerText = config[0].word;
+    if (refs.themeText.current) {
+      refs.themeText.current.innerText = config[0].word;
     }
   }, []);
 
   const animateDateChange = useCallback(
     (oldDate: [number, number], newDate: [number, number]) => {
-      [refs.iris, refs.fuchsia].forEach((ref, index) => {
+      [refs.leftDate, refs.rightDate].forEach((ref, index) => {
         if (ref.current) {
           gsap.fromTo(
             ref.current,
@@ -44,41 +44,41 @@ export const Slider = ({ className }: { className?: string }) => {
   );
 
   const animateRotation = useCallback((newIndex: number) => {
-    if (!refs.buttonsWrapper.current) return;
+    if (!refs.circleButtons.current) return;
 
     const targetRotation = -newIndex * ANGLE_PER_ITEM;
     setRotation(targetRotation);
 
-    gsap.to(refs.buttonsWrapper.current, {
+    gsap.to(refs.circleButtons.current, {
       rotate: (targetRotation * 180) / Math.PI,
       duration: 0.8,
       ease: "none",
       onUpdate: () => {
         const currentRotation = gsap.getProperty(
-          refs.buttonsWrapper.current,
+          refs.circleButtons.current,
           "rotate"
         ) as number;
-        const texts = refs.buttonsWrapper.current!.querySelectorAll("p");
+        const texts = refs.circleButtons.current!.querySelectorAll("p");
         texts.forEach((text) => gsap.set(text, { rotate: -currentRotation }));
       },
     });
   }, []);
 
   const animateContent = useCallback((newIndex: number) => {
-    if (!refs.sliderWrapper.current || !refs.activeText.current) return;
+    if (!refs.slider.current || !refs.themeText.current) return;
 
     const timeline = gsap.timeline();
 
     timeline
-      .to([refs.sliderWrapper.current, refs.activeText.current], {
+      .to([refs.slider.current, refs.themeText.current], {
         opacity: 0,
         duration: 0.2,
         onComplete: () => {
           setCurrentEvents(config[newIndex].events);
-          refs.activeText.current!.innerText = config[newIndex].word;
+          refs.themeText.current!.innerText = config[newIndex].word;
         },
       })
-      .to([refs.sliderWrapper.current, refs.activeText.current], {
+      .to([refs.slider.current, refs.themeText.current], {
         opacity: 1,
         duration: 0.2,
         delay: 0.4,
@@ -103,13 +103,13 @@ export const Slider = ({ className }: { className?: string }) => {
       <div className={s.carouselContainer}>
         <BigDate
           date={config[currentIndex].dates}
-          className={s.date}
-          fuchsiaRef={refs.fuchsia}
-          irisRef={refs.iris}
+          className={s.bigDate}
+          fuchsiaRef={refs.rightDate}
+          irisRef={refs.leftDate}
         />
       </div>
 
-      <p className={clsx(s.circleSpan, "pt-sans-bold")} ref={refs.activeText} />
+      <p className={clsx(s.themeText, "pt-sans-bold")} ref={refs.themeText} />
 
       <CircleButtons
         currentIndex={currentIndex}
@@ -117,17 +117,20 @@ export const Slider = ({ className }: { className?: string }) => {
         radius={RADIUS}
         onClick={handleClick}
         className={s.circleButtonsContainer}
-        ref={refs.buttonsWrapper}
+        ref={refs.circleButtons}
       />
 
-      <Navigation
-        currentIndex={currentIndex}
-        total={CONFIG_LENGTH}
-        onPrev={() => handleClick(currentIndex - 1)}
-        onNext={() => handleClick(currentIndex + 1)}
-      />
+      <div className={s.sliderContainer}>
+        <Navigation
+          currentIndex={currentIndex}
+          total={CONFIG_LENGTH}
+          onPrev={() => handleClick(currentIndex - 1)}
+          onNext={() => handleClick(currentIndex + 1)}
+          className={s.navigation}
+        />
 
-      <EventsSlider events={currentEvents} ref={refs.sliderWrapper} />
+        <EventsSlider events={currentEvents} ref={refs.slider} />
+      </div>
     </div>
   );
 };

@@ -27,14 +27,18 @@ export const EventsSlider = ({ events, ref }: EventsSliderProps) => {
       <Swiper
         modules={[Navigation]}
         slidesPerView={"auto"}
-        spaceBetween={80}
         freeMode={true}
         grabCursor={true}
+        className={s.eventsSwiper}
         navigation={{
           nextEl: `.${s.navButtonNext}`,
           prevEl: `.${s.navButtonPrev}`,
         }}
-        className={s.eventsSwiper}
+        breakpoints={{
+          0: { spaceBetween: 25 },
+          768: { spaceBetween: 80 },
+        }}
+        slideActiveClass={s.activeSlide}
       >
         {events.map((event, index) => (
           <SwiperSlide key={index} className={s.eventSlide}>

@@ -6,20 +6,18 @@
   flex-direction: column;
   gap: $gap-small;
   width: fit-content;
-  margin-bottom: 56px;
-  margin-left: $gap-large;
   color: $color-text;
 }
 
 .counter {
   margin: 0;
-  font-size: 14px;
+  font-size: $font-size-body-mobile;
 }
 
 .button {
   width: 50px;
   height: 50px;
-  font-size: 20px;
+  font-size: 0;
   background: #ffffff;
   border: 1px solid $button-border;
   border-radius: 50%;
@@ -32,5 +30,20 @@
 
   &:first-of-type {
     margin-right: 20px;
+  }
+}
+
+@include mobile {
+  .container {
+    gap: 10.67px;
+  }
+
+  .button {
+    width: 25px;
+    height: 25px;
+
+    &:first-of-type {
+      margin-right: 8.33px;
+    }
   }
 }

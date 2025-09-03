@@ -5,6 +5,7 @@
   display: grid;
   grid-template-columns: 2fr minmax(auto, $container-max) 1fr;
   width: 100%;
+  overflow: hidden;
   background-color: $color-bg;
 }
 
@@ -52,8 +53,7 @@
   margin: 0;
   padding-left: 78px;
   color: $color-text;
-  font-weight: 700;
-  font-size: 56px;
+  font-size: $font-size-h1;
   line-height: 1.2;
 
   &::before {
@@ -72,4 +72,43 @@
   position: relative;
   top: -89px;
   width: 100%;
+}
+
+@include mobile {
+  .container {
+    display: block;
+  }
+
+  .content {
+    position: static;
+    display: flex;
+    flex-direction: column;
+    padding: 59px 0 25px 20px;
+
+    &::after,
+    &::before {
+      display: none;
+    }
+
+    .horizontalLine,
+    .verticalLine {
+      display: none;
+    }
+  }
+
+  .title {
+    height: 48px;
+    padding: 0;
+    font-size: $font-size-h1-mobile;
+
+    &::before {
+      display: none;
+    }
+  }
+
+  .slider {
+    position: static;
+    display: flex;
+    flex-direction: column;
+  }
 }

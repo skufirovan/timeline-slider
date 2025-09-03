@@ -6,7 +6,7 @@
   flex-direction: row;
   gap: 95px;
   margin: 0;
-  font-size: 200px;
+  font-size: $font-size-h2;
   letter-spacing: -0.02em;
   cursor: default;
 }
@@ -17,4 +17,11 @@
 
 .iris {
   color: $color-primary;
+}
+
+@include mobile {
+  .text {
+    gap: 30px;
+    font-size: $font-size-h2-mobile;
+  }
 }
