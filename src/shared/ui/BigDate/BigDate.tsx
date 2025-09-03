@@ -15,13 +15,13 @@ export const BigDate = ({
   irisRef,
 }: BigDateProps) => {
   return (
-    <p className={clsx(s.text, className, "pt-sans-bold")}>
+    <h2 className={clsx(s.text, className, "pt-sans-bold")}>
       <span ref={irisRef} className={s.iris}>
         {date[0]}
       </span>
       <span ref={fuchsiaRef} className={s.fuchsia}>
         {date[1]}
       </span>
-    </p>
+    </h2>
   );
 };

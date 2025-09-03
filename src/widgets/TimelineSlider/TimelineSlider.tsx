@@ -35,7 +35,7 @@ export const Slider = ({ className }: { className?: string }) => {
           gsap.fromTo(
             ref.current,
             { innerText: oldDate[index] },
-            { innerText: newDate[index], duration: 0.5, snap: "innerText" }
+            { innerText: newDate[index], duration: 0.8, snap: "innerText" }
           );
         }
       });

@@ -38,10 +38,12 @@ export const EventsSlider = ({ events, ref }: EventsSliderProps) => {
       >
         {events.map((event, index) => (
           <SwiperSlide key={index} className={s.eventSlide}>
-            <div className={clsx(s.eventYear, "pt-sans-bold")}>
-              {event.year}
-            </div>
-            <div className={s.eventText}>{event.event}</div>
+            <article>
+              <h3 className={clsx(s.eventYear, "pt-sans-bold")}>
+                {event.year}
+              </h3>
+              <p className={s.eventText}>{event.event}</p>
+            </article>
           </SwiperSlide>
         ))}
       </Swiper>
