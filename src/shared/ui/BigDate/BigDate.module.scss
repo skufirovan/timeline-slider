@@ -1,0 +1,20 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+.text {
+  display: flex;
+  flex-direction: row;
+  gap: 95px;
+  margin: 0;
+  font-size: 200px;
+  letter-spacing: -0.02em;
+  cursor: default;
+}
+
+.fuchsia {
+  color: $color-secondary;
+}
+
+.iris {
+  color: $color-primary;
+}

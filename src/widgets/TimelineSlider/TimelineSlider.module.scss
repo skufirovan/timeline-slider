@@ -1,0 +1,30 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+.carouselContainer,
+.circleButtonsContainer {
+  @include flex-center;
+  width: 530px;
+  height: 530px;
+  margin: 0 auto;
+}
+
+.circleButtonsContainer {
+  position: absolute;
+  inset: 0;
+  border: 1px solid $color-border-20;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.date {
+  margin-right: $gap-medium;
+}
+
+.circleSpan {
+  position: absolute;
+  top: 0;
+  left: 890px;
+  color: #42567a;
+  font-size: 20px;
+}

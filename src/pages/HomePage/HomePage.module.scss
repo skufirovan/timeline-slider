@@ -1,0 +1,75 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+.container {
+  display: grid;
+  grid-template-columns: 2fr minmax(auto, $container-max) 1fr;
+  width: 100%;
+  background-color: $color-bg;
+}
+
+.content {
+  position: relative;
+  grid-column: 2;
+  padding: 170px 0 104px;
+
+  &::after,
+  &::before {
+    @include vertical-line($color-border-10);
+  }
+
+  &::before {
+    left: 0;
+  }
+
+  &::after {
+    right: 0;
+  }
+
+  .verticalLine {
+    @include vertical-line($color-border-10);
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .horizontalLine,
+  .verticalLine {
+    position: absolute;
+    background-color: $color-border-10;
+  }
+
+  .horizontalLine {
+    top: 480px;
+    right: 0;
+    left: 0;
+    height: 2px;
+  }
+}
+
+.title {
+  position: relative;
+  height: 134px;
+  margin: 0;
+  padding-left: 78px;
+  color: $color-text;
+  font-weight: 700;
+  font-size: 56px;
+  line-height: 1.2;
+
+  &::before {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 4px;
+    height: 120px;
+    background: linear-gradient(180deg, $color-primary, $color-secondary);
+    transform: translateY(-50%);
+    content: "";
+  }
+}
+
+.slider {
+  position: relative;
+  top: -89px;
+  width: 100%;
+}

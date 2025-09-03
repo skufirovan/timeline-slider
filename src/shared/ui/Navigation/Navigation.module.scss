@@ -1,0 +1,36 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: $gap-small;
+  width: fit-content;
+  margin-bottom: 56px;
+  margin-left: $gap-large;
+  color: $color-text;
+}
+
+.counter {
+  margin: 0;
+  font-size: 14px;
+}
+
+.button {
+  width: 50px;
+  height: 50px;
+  font-size: 20px;
+  background: #ffffff;
+  border: 1px solid $button-border;
+  border-radius: 50%;
+  cursor: pointer;
+
+  &:disabled {
+    cursor: default;
+    opacity: 0.6;
+  }
+
+  &:first-of-type {
+    margin-right: 20px;
+  }
+}

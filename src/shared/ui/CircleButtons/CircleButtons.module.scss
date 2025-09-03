@@ -1,0 +1,32 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+.circleButton {
+  position: absolute;
+  display: block;
+  width: 6px;
+  height: 6px;
+  margin: 0;
+  padding: 0;
+  font-size: 0;
+  line-height: 0;
+  background-color: $color-text;
+  border: none;
+  border-radius: 50%;
+  transition: all 0.4s ease;
+  pointer-events: auto;
+
+  &.active,
+  &:hover {
+    z-index: 1000;
+    width: 56px;
+    height: 56px;
+    color: $color-text;
+    font-size: 20px;
+    background: #ffffff;
+    border: 1px solid $button-border;
+    border-radius: 50%;
+    cursor: pointer;
+    pointer-events: auto;
+  }
+}
