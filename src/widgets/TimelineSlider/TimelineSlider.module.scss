@@ -4,6 +4,7 @@
 .carouselContainer,
 .circleButtonsContainer {
   @include flex-center;
+  z-index: 1;
   width: 530px;
   height: 530px;
   margin: 0 auto;
